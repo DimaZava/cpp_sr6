@@ -41,7 +41,7 @@ public:
             "Reserving " << capacity * sizeof(T) << " Bytes. " <<
             size << "/" << capacity << std::endl;
             pointer new_data = reinterpret_cast<pointer>(::operator new(capacity));
-            	std::memmove(new_data, data, old_capacity * sizeof(T)); // Copy existing data to the extended memory region
+            std::memmove(new_data, data, old_capacity * sizeof(T)); // Copy existing data to the extended memory region
             // std::memcpy(new_data, data, old_capacity * sizeof(T));
             // std::copy(data, data + old_capacity * sizeof(T), new_data);
             ::operator delete(data); // deallocate unused memory
@@ -50,9 +50,9 @@ public:
             std::cout << "data = " << std::hex << data << std::endl;
             new_data = nullptr; // clean up
             
-            new_element_ptr = data + (old_size + items_count) * sizeof(T); // calculate last element pointer
+            new_element_ptr = data + (old_size + items_count - 1); // calculate last element pointer
             for (int i = 0; i < (int)size; ++i)
-                std::cout << "ptr[" << i << "] = " << std::hex << data + i * sizeof(T) << std::endl;
+                std::cout << "ptr[" << i << "] = " << std::hex << data + i << std::endl;
             std::cout << "new_element_ptr value: " << std::hex << new_element_ptr << std::endl;
 
             return new_element_ptr;
@@ -60,9 +60,9 @@ public:
         else
         {
             std::cout << "No need to reallocate, still in bounds: " << size << "/" << capacity << std::endl;
-            new_element_ptr += items_count * sizeof(T);
+            new_element_ptr += items_count;
             for (int i = 0; i < (int)size; ++i)
-                std::cout << "ptr[" << i << "] = " << std::hex << data + i * sizeof(T) << std::endl;
+                std::cout << "ptr[" << i << "] = " << std::hex << data + i << std::endl;
             std::cout << "new_element_ptr = " << std::hex << new_element_ptr << std::endl;
             return new_element_ptr;
         }
