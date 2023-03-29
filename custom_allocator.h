@@ -41,8 +41,8 @@ public:
             "Reserving " << capacity * sizeof(T) << " Bytes. " <<
             size << "/" << capacity << std::endl;
             pointer new_data = reinterpret_cast<pointer>(::operator new(capacity));
-            // std::memmove(new_data, data, old_capacity * sizeof(T)); // Copy existing data to the extended memory region
-            std::memcpy(new_data, data, old_capacity * sizeof(T));
+            	std::memmove(new_data, data, old_capacity * sizeof(T)); // Copy existing data to the extended memory region
+            // std::memcpy(new_data, data, old_capacity * sizeof(T));
             // std::copy(data, data + old_capacity * sizeof(T), new_data);
             ::operator delete(data); // deallocate unused memory
             
