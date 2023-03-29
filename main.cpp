@@ -8,7 +8,7 @@
 static void print_map(const std::map<const int, int, std::less<int>, custom_allocator<std::pair<const int, int>>> &m) {
     for (auto element : m)
         std::cout << element.first << ":" << element.second << " ";
-    std::cout << std::endl;
+    std::cout << std::endl << std::endl;
 }
 
 int main(int argc, char const *argv[])
