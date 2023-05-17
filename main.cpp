@@ -6,8 +6,11 @@
 #define UNUSED(variable) (void)variable
 
 static void print_map(const std::map<const int, int, std::less<int>, custom_allocator<std::pair<const int, int>>> &m) {
-    for (auto element : m)
-        std::cout << element.first << ":" << element.second << " ";
+    std::cout << "addres of m: " << &m << std::endl;
+    for (auto it = m.begin(); it != m.end(); ++it)
+    {
+        std::cout << it->first << ":" << it->second << " @ " << &*it << " ";
+    }
     std::cout << std::endl << std::endl;
 }
 
